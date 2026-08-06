@@ -93,7 +93,7 @@ Privileged = {
   "LossOrDamage": "PASS | FAIL",
   "Verdict": "VALID | INVALID",
   "Severity": "severity under the program's rubric if VALID, else N/A",
-  "Confidence": percentage,
-  "AttackTiming": "atomic or multi-block" or "no-actor"
+  "Confidence": "percentage",
+  "AttackTiming": "atomic or multi-block or no-actor"
 }
 ```
