@@ -21,7 +21,7 @@
 
 ***GATE 1 — EXPLOITABLE***
 
-Every precondition needed for the attack must be fully under the attacker's own control; the attacker cannot depend on some independent party making a separate decision first. If a precondition is outside the attacker's control but is genuinely very likely to occur through ordinary operation of the protocol, the finding can still be valid, downgraded in severity. This exception never covers a case where the loss only occurs because the affected party skipped an available, documented safeguard for that same interaction; that stays a disqualifying precondition regardless of how "likely" it is.
+Every precondition needed for the attack must be fully under the attacker's own control; the attacker cannot depend on some independent party making a separate decision first. If a precondition is outside the attacker's control but is genuinely very likely to occur through ordinary operation of the protocol, or if the attack requires certain external conditions or a specific state, the finding can still be valid, downgraded in severity. This exception never covers a case where the loss only occurs because the affected party skipped an available, documented safeguard for that same interaction; that stays a disqualifying precondition regardless of how "likely" it is.
 
 ***GATE 2 — PROFITABLE***
 
