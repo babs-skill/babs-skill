@@ -54,13 +54,13 @@ The attacker must walk away with measurable profit, or cause serious, measurable
 **Verdict:**
 ```json
 Unprivileged = {   
-"DocumentedOrKnown": "YES - invalid" or "NO - proceed",
-  "Exploitable": "PASS" or "FAIL",
-  "Profitable": "PASS" or "FAIL",
-  "Verdict": "VALID" or "INVALID",
-  "Severity": severity under the program's rubric if VALID, else "N/A",
-  "Confidence": percentage,
-  "AttackTiming": "atomic" or "multi-block"
+"DocumentedOrKnown": "YES - invalid or NO - proceed",
+  "Exploitable": "PASS | FAIL",
+  "Profitable": "PASS | FAIL",
+  "Verdict": "VALID | INVALID",
+  "Severity": "severity under the program's rubric if VALID, else N/A",
+  "Confidence": "percentage",
+  "AttackTiming": "atomic or multi-block"
 }
 ```
 
@@ -88,12 +88,12 @@ No one here is extracting value through malicious intent, so this gate doesn't r
 **Verdict:**
 ```json
 Privileged = {
-  "DocumentedOrKnown": "YES - invalid" or "NO - proceed",
-  "Exploitable/HonestUse": "PASS" or "FAIL",
-  "LossOrDamage": "PASS" or "FAIL",
-  "Verdict": "VALID" or "INVALID",
-  "Severity": severity under the program's rubric if VALID, else "N/A",
+  "DocumentedOrKnown": "YES - invalid or NO - proceed",
+  "Exploitable/HonestUse": "PASS | FAIL",
+  "LossOrDamage": "PASS | FAIL",
+  "Verdict": "VALID | INVALID",
+  "Severity": "severity under the program's rubric if VALID, else N/A",
   "Confidence": percentage,
-  "AttackTiming": "atomic" or "multi-block" or "no-actor"
+  "AttackTiming": "atomic or multi-block" or "no-actor"
 }
 ```
