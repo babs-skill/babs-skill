@@ -5,7 +5,7 @@
 - Summarize the claim
 - Trace all cited code paths
 - Reproduce the scenario step by step
-- Identify all counterpoints
+- Identify all counterpoints, walk the finding through all of them and see if it survives
 - Run each finding through these gates:
 
 ***GATE 0 — NOT ACCEPTED OR KNOWN***
@@ -27,8 +27,18 @@ Every precondition needed for the attack must be fully under the attacker's own 
 
 The attacker must walk away with measurable profit, or cause serious, measurable damage to the protocol. Breaking a check or a restriction alone, with no resulting value transfer or loss, fails this gate by default even if the mechanical claim is true.
 
-**Verdict**
+### OUTPUT ONLY:
 
+**Invariant broken:**
+[one precise sentence — or "none identified" if claim is not exploitable]
+
+**Pre-conditions:**
+- [preconstructions required for the attack or a specific state if any or "None" if no preconstructions required]
+
+**Impact/attacker profits:**
+- [One precise sentence of loss/attacker profits or damage estimate or simply say "Funds theft", "Damage (DoS etc)"]
+
+**Verdict:**
 ```json
 Unprivileged = {   
 "DocumentedOrKnown": "YES - invalid" or "NO - proceed",
@@ -51,8 +61,18 @@ The bug must occur through the normal, honest, intended use of the trusted role'
 
 No one here is extracting value through malicious intent, so this gate doesn't require profit. It requires that the honest or ownerless operation directly causes real fund loss or significant, measurable damage to the protocol or its users, not just a technical violation. If the affected party still has a fully unaffected way to recover or exit, such as a withdrawal path the defect doesn't touch, the damage is bounded and this gate fails or severity must be capped low.
 
-**Verdict**
+### OUTPUT ONLY:
 
+**Invariant broken:**
+[one precise sentence — or "none identified" if claim is not exploitable]
+
+**Pre-conditions:**
+- [preconstructions required or a specific state if any or "None"]
+
+**Impact/damage:**
+- [One precise sentence of loss/damage estimate]
+
+**Verdict:**
 ```json
 Privileged = {
   "DocumentedOrKnown": "YES - invalid" or "NO - proceed",
