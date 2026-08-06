@@ -30,7 +30,7 @@ The attacker must walk away with measurable profit, or cause serious, measurable
 ### OUTPUT ONLY:
 
 **Invariant broken:**
-[one precise sentence — or "none identified" if claim is not exploitable]
+- [one precise sentence — or "none identified" if claim is not exploitable]
 
 **Pre-conditions:**
 - [preconstructions required for the attack or a specific state if any or "None" if no preconstructions required]
@@ -64,7 +64,7 @@ No one here is extracting value through malicious intent, so this gate doesn't r
 ### OUTPUT ONLY:
 
 **Invariant broken:**
-[one precise sentence — or "none identified" if claim is not exploitable]
+- [one precise sentence — or "none identified" if claim is not exploitable]
 
 **Pre-conditions:**
 - [preconstructions required or a specific state if any or "None"]
