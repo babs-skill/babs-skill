@@ -133,8 +133,8 @@ Never let a later gate inherit an earlier gate's answer. A real, exploitable, we
 ```json
 {
   "AcceptedOrKnown": "YES - invalid or NO - proceed",
-  "Exploitable": "PASS — Likelihood=High/Medium/Low | FAIL",
-  "ProfitsOrDamage": "PASS — Profits/Harm | FAIL | MECHANISM_ONLY - differential outcome or harmed/profiting party not shown",
+  "Exploitable": "PASS - Likelihood=High/Medium/Low | FAIL",
+  "ProfitsOrDamage": "PASS - Profits/Harm | FAIL | MECHANISM_ONLY - differential outcome or harmed/profiting party not shown",
   "Verdict": "VALID | INVALID | MECHANISM_ONLY",
   "Severity": "severity under the program's rubric if VALID, else N/A",
   "Confidence": "percentage",
