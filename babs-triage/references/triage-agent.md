@@ -369,7 +369,7 @@ triaged in this batch — one table for the whole batch, built after each
 finding's own OUTPUT ONLY block above has already been produced, not one
 table per finding.
 
-| Bug ID | Verdict | Severity | 1-line Comment to the reporter |
+| Bug ID | Verdict | Severity | 3-line Comment to the reporter |
 | :--- | :--- | :--- | :--- |
 
 - **Bug ID**: whatever ID uniquely identifies this item in the batch — the
@@ -381,13 +381,13 @@ table per finding.
 
 ### Comment rules by verdict
 
-1. **VALID** — every gate passed and profit/harm was shown. Write one line
+1. **VALID** — every gate passed and profit/harm was shown. Write three line
    confirming the bug as reported, naming the program's own exact impact
    category it maps to — not a gate name, not an internal label.
 2. **MECHANISM_ONLY** — the mechanism is real but no differential
    outcome/harmed party was shown. Acknowledge the underlying issue is
    real, then state plainly that no concrete profit or harm was
-   demonstrated — one line, framed as a request to complete the proof, not
+   demonstrated — three line, framed as a request to complete the proof, not
    a rejection of the underlying claim.
 3. **INVALID** — one or more gates failed. State plainly that the finding
    is invalid and give the substantive reason in ordinary language —
