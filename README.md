@@ -1,4 +1,4 @@
-# babs-skill-v2
+# babs-skill
 
 Reusable Codex and Claude skill for smart-contract audit workflows, finding verification, PoC writing, fuzzing, report formatting, duplicate grouping, and bounty triage.
 
