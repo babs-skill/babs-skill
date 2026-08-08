@@ -1,6 +1,10 @@
 # babs-skill
 
-Reusable Codex and Claude skill for smart-contract audit workflows, finding verification, PoC writing, fuzzing, report formatting, duplicate grouping, and bounty triage.
+Reusable Codex and Claude skill for smart-contract audit workflows:
+- Bug hunting
+- Findings deduplication
+- Contest and bug bounty triage
+- Testnet, mainnet fork and local test writing / execution and report formatting
 
 ## Install
 
@@ -23,7 +27,7 @@ run /babs-poc on the findings using [test name: local test/mainnet fork test/tes
 ## Skills
 | Skill | Description |
 | :-- | :--- |
-| [babs-hunt]() | |
-| [babs-dedup]() | |
-| [babs-triage]() | |
-| [babs-poc]() | |
+| [babs-hunt](https://github.com/babs-skill/babs-skill/tree/main/babs-hunt) | Checks known-issues fix and try to bypass it, checks if the fix introduces new bug, hunt for siblings issues, impact driven and critical invariants breaks hunt |
+| [babs-dedup](https://github.com/babs-skill/babs-skill/tree/main/babs-dedup) | |
+| [babs-triage](https://github.com/babs-skill/babs-skill/tree/main/babs-triage) | |
+| [babs-poc](https://github.com/babs-skill/babs-skill/tree/main/babs-poc) | |
