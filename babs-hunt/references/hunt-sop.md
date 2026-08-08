@@ -51,11 +51,21 @@ Use this exact structure for every finding or lead you produce.
 ### FINDING #N
 **Title:** [a few words]
 **Lens/Agent:** [your agent number and name]
-**Provisional severity:** [Critical | High | Medium | Low — your own
-estimate, clearly marked provisional]
+**Severity:** [Critical | High | Medium | Low, per the program's own
+rubric — babs-triage runs its own gates independently and may land
+somewhere different; this is your real assessment, not a placeholder]
+**Confidence:** [percentage, or High/Medium/Low — how sure you are
+the mechanism holds as described]
 **File/Function:** [exact path and function/line]
-**Mechanism:** [2-4 sentences — the exact broken behavior, in your
-own words, grounded in what you read]
+**Description:** [what the code actually does, in your own words,
+grounded in what you read]
+**Root cause:** [the specific missing check, wrong ordering, or
+absent enforcement — cited to the exact line or condition where it
+should exist]
+**Impact:** [the concrete consequence — who is harmed and how, mapped
+to the program's own impact wording where one applies]
+**Mitigation:** [the specific fix — what check, ordering, or guard
+would close it]
 **Evidence:** [file:line citations; short exact excerpts where they
 clarify the claim]
 **Known-issue link (Agent 1 only):** [which known issue this bypasses
