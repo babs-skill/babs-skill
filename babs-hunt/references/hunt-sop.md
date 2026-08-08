@@ -72,6 +72,7 @@ to the program's own impact wording where one applies]
 would close it]
 
 > Only one fires
+
 **Known-issue link (Agent 1 only):** [which known issue this bypasses
 or extends, or siblings]
 
