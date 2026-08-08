@@ -24,6 +24,34 @@ means a separate root cause, not a separate line in a bot report; if
 three bot-report lines describe the same underlying fix, they're one
 worklist item.
 
+**Source-access check.** Known-issues files, bundled audit reports,
+and README/CHANGELOG content are readable directly from your bundle.
+Disclosed incident postmortems and bug-bounty writeups can be found
+via web search if that tool is available to you, regardless of
+whether the codebase came as a zip or a repo link. Git commit history
+is different: mining it for security-flavored fix commits ("fix",
+"gate", "guard", "patch", "vuln", "hardfork") requires either a
+direct repository link you can clone or pasted `git log`/diff output
+— a zip bundle alone contains no `.git` data, so you cannot mine
+commit history from it no matter how thoroughly you search the
+bundled files. If, while building your worklist, you determine
+commit-history mining would genuinely add value for a specific known
+issue and you only have a zip's worth of files, do not silently skip
+it — state exactly this in your output: "commit-history mining would
+help confirm the original fix for [issue], but only a zip was
+provided — no `.git` data available." Then proceed with whatever
+sources remain for that item.
+
+## Naming discipline: UNCHECKED is not CLEARED
+
+Do not mark a fix as holding in Stage A, or a sibling as clear in
+Stage B, without naming the specific input, path, or check that
+clears it. "I didn't find a problem" is UNCHECKED, not CLEARED —
+those are different claims, and only the second one is worth
+reporting as a negative result. Whenever you conclude a fix holds or
+a sibling is protected, your output must name exactly what you
+traced to reach that conclusion.
+
 For each worklist item, extract:
 - The vulnerable mechanism *before* the fix (what was broken, and why)
 - The fix itself — the actual diff or the actual current code that
