@@ -71,9 +71,9 @@ to the program's own impact wording where one applies]
 **Mitigation:** [the specific fix — what check, ordering, or guard
 would close it]
 
+> Only one fires
 **Known-issue link (Agent 1 only):** [which known issue this bypasses
-or extends, or "N/A — new, no known-issue anchor" if Agent 1 is
-running in reduced mode]
+or extends, or siblings]
 
 **Rubric bullet targeted (Agents 2-4 only):** [the exact bullet text
 you were hunting for when this surfaced]
@@ -83,7 +83,9 @@ verbatim from source docs if one exists, or as you derived it]
 
 ### LEAD #N
 **Observation:** [what looked suspicious]
+
 **Why it's suspicious:** [the specific reason, not a vibe]
+
 **What's missing to confirm:** [the exact gap — a trace you didn't
 finish, a precondition you couldn't verify, a value you couldn't
 pin down]
