@@ -23,7 +23,7 @@ run /babs-poc on the findings using [test name: local test/mainnet fork test/tes
 ## Skills
 | Skill | Description |
 | :-- | :--- |
-| | |
-| | |
-| | |
-| | |
+| [babs-hunt]() | |
+| [babs-dedup]() | |
+| [babs-triage]() | |
+| [babs-poc]() | |
