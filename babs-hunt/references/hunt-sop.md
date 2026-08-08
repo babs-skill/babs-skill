@@ -49,30 +49,35 @@ acceptable, honest outcome — silence about an item is not.
 Use this exact structure for every finding or lead you produce.
 
 ### FINDING #N
+**Lens/Agent:** [your agent number and name] | **Confidence:** [percentage, or High/Medium/Low — how sure you are
+the mechanism holds as described]
+
 **Title:** [a few words]
-**Lens/Agent:** [your agent number and name]
+
 **Severity:** [Critical | High | Medium | Low, per the program's own
 rubric — babs-triage runs its own gates independently and may land
 somewhere different; this is your real assessment, not a placeholder]
-**Confidence:** [percentage, or High/Medium/Low — how sure you are
-the mechanism holds as described]
-**File/Function:** [exact path and function/line]
+
 **Description:** [what the code actually does, in your own words,
-grounded in what you read]
+grounded in what you read + exact code, exact path and function/line]
+
 **Root cause:** [the specific missing check, wrong ordering, or
 absent enforcement — cited to the exact line or condition where it
 should exist]
+
 **Impact:** [the concrete consequence — who is harmed and how, mapped
 to the program's own impact wording where one applies]
+
 **Mitigation:** [the specific fix — what check, ordering, or guard
 would close it]
-**Evidence:** [file:line citations; short exact excerpts where they
-clarify the claim]
+
 **Known-issue link (Agent 1 only):** [which known issue this bypasses
 or extends, or "N/A — new, no known-issue anchor" if Agent 1 is
 running in reduced mode]
+
 **Rubric bullet targeted (Agents 2-4 only):** [the exact bullet text
 you were hunting for when this surfaced]
+
 **Invariant targeted (Agent 5 only):** [the invariant statement,
 verbatim from source docs if one exists, or as you derived it]
 
