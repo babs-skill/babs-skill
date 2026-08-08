@@ -4,7 +4,8 @@ Reusable Codex and Claude skill for smart-contract audit workflows:
 - Bug hunting
 - Findings deduplication
 - Contest and bug bounty triage
-- Testnet, mainnet fork and local test writing / execution and report formatting
+- Testnet, mainnet fork and local test writing and execution
+- Report formatting in Cantina, sherlock, hackenProof and immunefi style
 
 ## Install
 
