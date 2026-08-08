@@ -40,6 +40,36 @@ what order — forward to a state where they don't.
    relationship it constrains — a vague invariant produces vague
    hunting.
 
+## Filter before finalizing the worklist
+
+A candidate only stays on your worklist if it clears all three:
+
+1. **If broken, the consequence is severe** — direct fund theft,
+   direct fund loss, permanent protocol damage, funds getting frozen
+   or made permanently unwithdrawable, or a denial-of-service that
+   blocks a core function indefinitely. An invariant whose break just
+   causes a minor UX inconvenience or a cosmetic inconsistency does
+   not belong on this list — Agents 2-4 already cover the full
+   severity spectrum from their own angle; this lens exists
+   specifically for the highest-stakes properties.
+2. **Non-obvious** — not enforced by a single, visible modifier or
+   check that any reviewer would spot on a first read. If the
+   protection is a one-line guard sitting directly on the function,
+   it's not what this lens is for.
+3. **Not a standard, already-correct library pattern** — exclude
+   invariants that reduce to "does `nonReentrant` hold," "does
+   `Ownable` gate this correctly," "does `Pausable` work as
+   documented," or an equivalent standard OpenZeppelin pattern used
+   as intended. Assume these are correctly wired unless something you
+   already found elsewhere gives specific, concrete reason to doubt
+   it — don't spend this lens's effort re-verifying well-trodden
+   library behavior.
+
+Drop anything that fails any of the three. There is no numeric cap on
+how many invariants remain after this filter — carry every one that
+clears it, however many that turns out to be. The filter is what
+keeps the list tight, not an arbitrary count.
+
 ## Procedure, per invariant
 
 1. **Locate the guard.** Find the exact code responsible for keeping
