@@ -49,14 +49,12 @@ acceptable, honest outcome — silence about an item is not.
 Use this exact structure for every finding or lead you produce.
 
 ### FINDING #N
-**Lens/Agent:** [your agent number and name] | **Confidence:** [percentage, or High/Medium/Low — how sure you are
+**Lens/Agent:** [your agent number and name] | **Severity:** [Critical | High | Medium | Low, per the program's own
+rubric — babs-triage runs its own gates independently and may land
+somewhere different; this is your real assessment, not a placeholder] | **Confidence:** [percentage, or High/Medium/Low — how sure you are
 the mechanism holds as described]
 
 **Title:** [a few words]
-
-**Severity:** [Critical | High | Medium | Low, per the program's own
-rubric — babs-triage runs its own gates independently and may land
-somewhere different; this is your real assessment, not a placeholder]
 
 **Description:** [what the code actually does, in your own words,
 grounded in what you read + exact code, exact path and function/line]
