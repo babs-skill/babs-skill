@@ -61,10 +61,6 @@ somewhere different; this is your real assessment, not a placeholder]
 **Description:** [what the code actually does, in your own words,
 grounded in what you read + exact code, exact path and function/line]
 
-**Root cause:** [the specific missing check, wrong ordering, or
-absent enforcement — cited to the exact line or condition where it
-should exist]
-
 **Impact:** [the concrete consequence — who is harmed and how, mapped
 to the program's own impact wording where one applies]
 
