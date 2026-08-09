@@ -1,6 +1,6 @@
 ---
 name: babs-triage
-description: Adversarial verification and severity triage for smart contract security findings. Trigger on "/babs-triage" or a request to triage, verify, judge, or assign severity to one or more findings, whether from babs-hunt, babs-dedup, solidity-auditor, 0xSimao AI, or manual review. Input is one or more findings (claim + code reference, and the PoC/report text if one exists), the program's platform and severity rubric, and — where available — deployment configs/registries showing what's actually live in the reference deployment. Does not hunt for new bugs, does not merge/dedupe findings, and does not write PoCs — those are babs-hunt, babs-dedup, and babs-poc.
+description: Adversarial verification and severity triage for smart contract security findings. Trigger on "/babs-triage" or a request to triage, verify, judge, or assign severity to one or more findings, whether from babs-hunt, babs-dedup, solidity-auditor, 0xSimao AI, or manual review. Input is one or more findings (claim + code reference, and the PoC/report text if one exists), the program's platform and severity rubric, and — where available — deployment configs/registries showing what's actually live in the reference deployment (or, for a pre-launch engagement, what the deploy scripts/config designate as the intended configuration). Does not hunt for new bugs, does not merge/dedupe findings, and does not write PoCs — those are babs-hunt, babs-dedup, and babs-poc.
 ---
 
 # babs-triage
@@ -24,14 +24,24 @@ here.
   list, known issues, Q&A/design-rationale prose) for this specific
   engagement. Gate 0 requires reading these directly, not from memory of a
   prior engagement.
-- Deployment configs, registries, address lists, or deploy scripts, if they
-  exist for this engagement — Gate 0.7 needs these to tell a confirmed-live
-  path from an unconfirmed one. If none exist at all, say so explicitly
-  before triaging: every finding will resolve Gate 0.7 as UNCONFIRMED rather
-  than CONFIRMED-LIVE, which caps every otherwise-valid finding's severity
-  at Medium regardless of what the mechanism would actually justify. That's
-  a systemic effect on the whole batch, not a per-finding footnote — flag it
-  up front so it isn't mistaken for a run of unusually weak findings.
+- First establish whether this is a live engagement (a bug bounty on a
+  deployed protocol, or a contest auditing an already-deployed system) or a
+  pre-launch contest with nothing deployed yet — the program document
+  usually states this directly. Then gather accordingly:
+  - **Live engagement**: deployment configs, registries, address lists, or
+    deploy scripts showing what's actually wired up today. If none exist at
+    all, say so explicitly before triaging — every finding will resolve
+    Gate 0.7 as UNCONFIRMED rather than CONFIRMED-LIVE, capping every
+    otherwise-valid finding's severity at Medium. That's a systemic effect
+    on the whole batch, not a per-finding footnote — flag it up front so it
+    isn't mistaken for a run of unusually weak findings.
+  - **Pre-launch engagement**: the codebase's own deploy scripts, config
+    files, or architecture/design docs, if they designate a specific
+    configuration among whatever multiple options the code technically
+    supports. A pre-launch engagement with no deployment at all is normal
+    and does NOT by itself cap severity — Gate 0.7 only caps a pre-launch
+    finding when even the intended design leaves genuine ambiguity about
+    which supported path will actually be used.
 
 ## Procedure
 
@@ -52,6 +62,10 @@ here.
    gate sequence — a lead that hasn't produced a concrete mechanism yet
    belongs back with the hunter, not through Gate 2's mechanism-verification
    test as if it were a finished claim.
+6. If explicitly asked, produce the reporter-facing verdict table from the
+   end of the reference file, for the whole triaged batch, after every
+   finding's own OUTPUT ONLY block already exists. Never produce this table
+   unprompted.
 
 ## Out of scope for this skill
 
