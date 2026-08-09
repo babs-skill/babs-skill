@@ -8,6 +8,56 @@
 
 > If any of these is missing, stop and ask "Provide the finding, the test target, the platform report format, and repo access."
 
+## GATE A — DEPLOYMENT EVIDENCE (mainnet fork / testnet only)
+
+Run this before STEP 2 or STEP 3, immediately after STEP 0's required inputs
+are confirmed present. Does not apply to STEP 1 — a local test needs no real
+deployed address.
+
+Check the program's own scope/deployment documentation for the actual,
+already-deployed addresses of every contract the PoC needs to call or fork
+against. Never guess an address, reuse one from memory, or infer one from a
+similar-sounding deployment on a different chain.
+
+If those addresses genuinely do not exist — a pre-launch program with
+nothing deployed yet, or a program that simply hasn't published deployment
+addresses — stop before writing anything and state plainly: "I can't write
+a [mainnet fork / testnet] PoC for this finding because [program name] has
+no confirmed deployed addresses — [what's missing]." Offer STEP 1 (local
+test) as the alternative if one hasn't already been requested; do not
+substitute a guessed or synthetic address to route around the missing input.
+
+## GATE B — UNPRIVILEGED HARM RE-VERIFICATION (all test types)
+
+Run this before STEP 1, 2, or 3, for every finding, regardless of which
+test type was requested. babs-triage already scored this finding's Gate 1
+(unprivileged actor) and Gate 4 (harm or profit) on paper, from reading and
+tracing the code — writing the actual PoC is where that reasoning gets
+tested against real, running code, and it can fail here even when it held
+up on paper.
+
+While constructing the attack, check both of the following stay true:
+
+1. The attacker's role in the PoC needs no permission, key, or capability
+   an ordinary, unprivileged caller wouldn't have — no admin key, no
+   governance vote, no allowlisted address the triage output didn't already
+   account for. If writing a working exploit turns out to require granting
+   the "attacker" account something privileged, that contradicts the
+   finding's own Gate 1 PASS.
+2. Running the actual numbers through the actual code produces the
+   specific, concrete loss, theft, or damage the finding claims — not an
+   approximation, not a smaller or different effect than described. If the
+   real numbers don't produce real harm once worked through concretely,
+   that contradicts the finding's own Gate 4 PASS.
+
+If either check fails, stop before finishing the PoC and state plainly:
+"I can't prove the attacker profits/harm through an unprivileged path for
+this finding because [specific reason — what privilege was actually needed,
+or what the real numbers actually showed instead]." Send the finding back
+for babs-triage to re-score rather than writing a PoC that doesn't actually
+demonstrate what the finding claims, and rather than quietly softening the
+claim to fit what the code will actually do.
+
 ## STEP 1 — LOCAL TEST POC
 > Write a Foundry PoC that demonstrates the confirmed impact.
 
