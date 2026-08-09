@@ -341,7 +341,7 @@ Never let a later gate inherit an earlier gate's answer. A real and exploitable 
 
 ```json
 {
-  "AcceptedOrKnown": "YES - invalid or NO - proceed",
+  "AcceptedOrKnown": "YES - invalid | NO - proceed",
   "Exploitable": "PASS — Likelihood=High/Medium/Low | FAIL",
   "ProfitsOrDamage": "PASS | FAIL | MECHANISM_ONLY - differential outcome or harmed/profiting party not shown",
   "PathLive": "CONFIRMED-LIVE | CONFIRMED-INTENDED | UNCONFIRMED | CONFIRMED-DEAD",
