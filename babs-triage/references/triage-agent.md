@@ -13,7 +13,7 @@ Before scoring:
 - Read the actual submitted report and PoC directly when available; do not rely on summaries.
 - Read the entire program/contest documentation end to end, including Q&A, design rationale, known issues, scope, exclusions, and prose explanations — not only a formal in/out-of-scope bullet list. These documents routinely disclose a mechanism's actual intended purpose and accepted trade-offs in prose sections a keyword search for "out of scope" will miss entirely.
 - Treat the program's own stated design intent, trade-offs, trust assumptions, and accepted risks as authoritative over the submitter's claimed invariant.
-- Before Gate 0.7, search deployment configs, registries, address lists, scripts, and on-repo references to determine whether the exact affected component is actually wired into the current/reference deployment.
+- Before Gate 0.7, first check the program's own documentation for whether a reference deployment exists at all (a live bug bounty, or a contest auditing an already-deployed system) or this is a pre-launch audit with nothing deployed yet — then search deployment configs, registries, address lists, deploy scripts, and on-repo references accordingly: for an existing deployment, to confirm what's actually wired up today; for a pre-launch codebase, to confirm what the deploy scripts/config designate as the intended configuration.
 - Trace every cited code path.
 - Reproduce the scenario step by step.
 - Identify and test all counterpoints.
@@ -129,23 +129,23 @@ Answer:
 
 ### 0.7 — PATH LIVE / RELIED ON IN REFERENCE DEPLOYMENT
 
-Verify whether the exact affected path is live in the current/reference deployment:
+First determine which situation applies, from the program's own documentation (contest/engagement pages routinely state this directly — "audit of the currently-live protocol at [address]" vs "pre-launch audit, not yet deployed"):
 
-- exact contract instance,
-- oracle backend,
-- configuration,
-- provider,
-- role holder,
-- registry entry,
-- deployment script evidence.
-
-Do not assume code existence means live use.
+**A. An actual reference deployment already exists** (a bug bounty on a live protocol, or a contest auditing an already-deployed system). Verify whether the exact affected path — the exact contract instance, oracle backend, configuration, provider, role holder, registry entry — is confirmed to be the one actually wired up and relied on today, using deployment configs, registries, scripts, or other on-repo evidence where available. Do not assume live use from the code's mere existence or capability.
 
 Answer one:
 
-- `CONFIRMED-LIVE` — path is wired and relied on today.
-- `CONFIRMED-DEAD` — path is unreachable, disabled, or superseded → `INVALID`.
-- `UNCONFIRMED` — path exists and is not proven dead, but live status cannot be confirmed. Proceed, but output this verbatim and cap severity at Medium.
+- `CONFIRMED-LIVE` — the path is confirmed as the one actually wired up and relied on today. Passes cleanly, no further action.
+- `CONFIRMED-DEAD` — the path is confirmed unreachable or provably superseded (explicitly disabled, a component that can never be selected in the current configuration). FAILS → `INVALID`.
+- `UNCONFIRMED` — the path exists and is not proven dead, but its current live/active status cannot be confirmed from available evidence (deployment configs are absent, ambiguous, or point at a different component as primary). Proceed, but this status must be carried into the output verbatim, and severity is capped at Medium — impact against a not-yet-relied-upon path, when other paths exist and could be the real one instead, is inherently prospective rather than current.
+
+**B. No reference deployment exists anywhere yet** (a genuinely pre-launch contest). There is nothing to check "current live use" against for anything in the codebase, including the parts that will become production the moment it launches — do not default every finding to `UNCONFIRMED` just because deployment evidence doesn't exist yet; that penalizes every finding in every pre-launch contest for a reason unrelated to the finding itself. Instead, check the codebase's own deploy scripts, config files, or architecture/design documentation for whether they designate a single, specific configuration among whatever multiple options the code technically supports — e.g. a deploy script that instantiates `ChainlinkOracle` specifically, never `PythOracle`, even though both exist in the codebase.
+
+Answer one:
+
+- `CONFIRMED-INTENDED` — no live deployment exists, but the deploy scripts/config/architecture docs unambiguously designate this path as the one that will be used at launch. Treat identically to `CONFIRMED-LIVE` — no severity cap. The finding will be live the moment the protocol launches; severity should reflect that, not be discounted because launch hasn't happened yet chronologically.
+- `CONFIRMED-DEAD` — same meaning as in situation A: the path is provably unreachable or superseded regardless of deployment stage.
+- `UNCONFIRMED` — even the intended, pre-launch design leaves genuine ambiguity about which of several supported paths will actually be used (no deploy script, config, or doc evidence resolves it — not merely that nothing has been deployed to a chain yet). This is the only case in a pre-launch contest where the Medium cap should apply.
 
 ---
 
@@ -313,7 +313,7 @@ Use this label to map severity under the program rubric.
 - Gate 3 fail → `INVALID`
 - Gate 4 `MECHANISM_ONLY` → `MECHANISM_ONLY`, no severity
 - Gates 0–4 pass → `VALID`, severity from Gate 5 and program rubric
-- If Gate 0.7 = `UNCONFIRMED`, severity is capped at Medium
+- If Gate 0.7 = `UNCONFIRMED`, severity is capped at Medium. (`CONFIRMED-INTENDED` is not `UNCONFIRMED` and is not capped.)
 
 Never let a later gate inherit an earlier gate's answer. A real and exploitable mechanism with no Gate 4 differential outcome is `MECHANISM_ONLY`, not "probably valid."
 
@@ -331,7 +331,7 @@ Never let a later gate inherit an earlier gate's answer. A real and exploitable 
 
 **Pre-conditions:**
 
-- [Required attack/state preconditions, or `None`. If Gate 0.7 is `UNCONFIRMED`, include: `Gate 0.7: UNCONFIRMED — [what could not be verified and why]`.]
+- [Required attack/state preconditions, or `None`. If Gate 0.7 is `UNCONFIRMED`, include: `Gate 0.7: UNCONFIRMED — [what could not be verified and why]`. If Gate 0.7 is `CONFIRMED-INTENDED`, include: `Gate 0.7: CONFIRMED-INTENDED — pre-launch, designated by [deploy script/config/doc reference]` so it's clear why no cap applies despite no live deployment existing yet.]
 
 **Impact/profits or damage estimate:**
 
@@ -344,7 +344,7 @@ Never let a later gate inherit an earlier gate's answer. A real and exploitable 
   "AcceptedOrKnown": "YES - invalid or NO - proceed",
   "Exploitable": "PASS — Likelihood=High/Medium/Low | FAIL",
   "ProfitsOrDamage": "PASS | FAIL | MECHANISM_ONLY - differential outcome or harmed/profiting party not shown",
-  "PathLive": "CONFIRMED-LIVE | UNCONFIRMED | CONFIRMED-DEAD",
+  "PathLive": "CONFIRMED-LIVE | CONFIRMED-INTENDED | UNCONFIRMED | CONFIRMED-DEAD",
   "Verdict": "VALID | INVALID | MECHANISM_ONLY",
   "Severity": "severity under the program's rubric if VALID, else N/A (capped at Medium if PathLive=UNCONFIRMED)",
   "Confidence": "percentage",
